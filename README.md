@@ -130,27 +130,27 @@ Switch 2 → Active: X, Unused: Y
 Screenshots included:
 ### Topology Setup
 
-![Topology](screenshots/Topology.png)
+![Topology](screenshots/topology.png)
 
 ### Controller–Switch Connection
 
-![Switch Connection](screenshots/ControllerSwitchConnection.png)
+![Switch Connection](screenshots/connection.png)
 
 ### Allowed Scenario
 
-![Allowed](screenshots/AllowedScenario.png)
+![Allowed](screenshots/allowed.png)
 
 ### Blocked Scenario
 
-![Blocked](screenshots/BlockedScenario.png)
+![Blocked](screenshots/blocked.png)
 
 ### Performance Test (iperf)
 
-![iperf](screenshots/PerformanceTest.png)
+![iperf](screenshots/performancetest.png)
 
 ### Flow Analysis
 
-![Flow](screenshots/FlowAnalysis.png)
+![Flow](screenshots/flowanalysis.png)
 
 ### pingall Result
 
