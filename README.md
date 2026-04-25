@@ -7,7 +7,7 @@
 
 In Software Defined Networking (SDN), switches maintain flow tables to control packet forwarding. However, there is no direct mechanism to monitor how effectively these flow rules are utilized.
 
-This project aims to design and implement a system that analyzes flow tables across multiple switches and provides insights into rule usage.
+This project addresses this gap by implementing a system that analyzes flow table entries across multiple switches, enabling monitoring of rule usage and network behavior.
 
 ---
 
@@ -22,10 +22,10 @@ This project aims to design and implement a system that analyzes flow tables acr
 
 ## Objective
 
-* Demonstrate **controller–switch interaction** using OpenFlow
-* Implement **match–action flow rules**
-* Analyze **flow table usage dynamically**
-* Demonstrate **network behavior (allowed vs blocked traffic)**
+* Demonstrate controller–switch interaction using OpenFlow
+* Implement match–action based flow rules
+* Analyze flow table usage dynamically
+* Demonstrate network behavior (allowed vs blocked traffic)
 
 ---
 
@@ -46,6 +46,8 @@ h1 --- s1 --- s2 --- s3 --- h2
            |       |
           h3      h4
 ```
+Multi-switch topology enables realistic traffic flow analysis.
+Supports cross-switch communication and monitoring.
 
 ---
 
@@ -61,7 +63,6 @@ python3 pox.py flow_analyzer
 ### Start Mininet In Another Terminal
 
 ```bash
-cd ~
 sudo mn --custom topo.py --topo flowtopo --controller=remote,port=6633
 ```
 
@@ -82,7 +83,7 @@ sudo mn --custom topo.py --topo flowtopo --controller=remote,port=6633
 
 ---
 
-##  Test Scenarios
+##  Test Scenarios 
 
 ### Allowed Traffic
 
@@ -101,9 +102,10 @@ mininet> h1 ping h2
 ### Performance Test
 
 ```bash
-mininet> iperf h2 h3
+mininet> h3 iperf -s &
+mininet> h2 iperf -c h3
 ```
-✔ Generates high traffic for analysis
+✔ Generates high traffic for analysis and measures throughput
 
 ---
 
@@ -113,15 +115,6 @@ mininet> iperf h2 h3
 Switch 1 → Active: X, Unused: Y
 Switch 2 → Active: X, Unused: Y
 ```
-
----
-
-##  Observations
-
-* Active flow count increases with traffic
-* Blocked traffic prevents rule installation
-* Initial packet loss occurs due to reactive flow setup
-* Flow statistics enable identification of rule utilization
 
 ---
 
@@ -158,12 +151,24 @@ Screenshots included:
 
 ---
 
+##  Observations
+
+* Active flow count increases with traffic
+* Blocked traffic prevents rule installation
+* Initial packet loss occurs due to reactive flow setup
+* Flow statistics enable identification of rule utilization
+
+---
+
+
 ##  Conclusion
 
 This project successfully demonstrates:
+
+* Reactive SDN behavior using OpenFlow
 * Dynamic flow rule installation
 * Real-time monitoring of flow usage
-* Traffic control using SDN controller logic
+* Traffic control using controller logic
   
 ---
 
